@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { ProductsRepository } from "../repositories/ProductsRepository";
+import { ProductsRepositorie } from "../repositories/ProductsRepository";
 
 interface IProductRequest{
   name:string;
@@ -16,7 +16,7 @@ interface IProductRequest{
 class CreateProductService {
 
   async execute({description, name,price, manufacturer}:IProductRequest) {
-    const productRepository = getCustomRepository(ProductsRepository);
+    const productRepository = getCustomRepository(ProductsRepositorie);
 
     const product = productRepository.create({
       name,

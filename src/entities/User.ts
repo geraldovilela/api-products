@@ -1,4 +1,3 @@
-import { type } from "os";
 import { Column, CreateDateColumn, Entity, ObjectID, ObjectIdColumn, UpdateDateColumn } from "typeorm";
 import { Product } from "./Product";
 
@@ -23,11 +22,11 @@ class User {
   @CreateDateColumn()
   created_at!: Date;
   
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updated_at!: Date;
   
   @Column(type => Product)
-  favored: Product[];
+  products: Product[];
 
 }
 

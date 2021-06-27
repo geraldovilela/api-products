@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import { Product } from "../entities/Product";
 import { User } from "../entities/User";
 import { UsersRepositories } from "../repositories/UsersRepository"
 
@@ -7,11 +8,12 @@ interface IUserRequest {
   email:string;
   admin?:boolean;
   password: string;
+  products?: Product[];
 }
 
 class CreateUserService {
 
-  async execute({email, name, admin=false, password}:IUserRequest): Promise<User> {
+  async execute({email, name, admin=false, password, products=[]}:IUserRequest): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepositories);
 
     if(!email) {
@@ -30,7 +32,8 @@ class CreateUserService {
       name,
       email,
       password,
-      admin
+      admin,
+      products
     })
   
     await usersRepository.save(user);

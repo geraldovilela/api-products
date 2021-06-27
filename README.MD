@@ -9,10 +9,10 @@
 - Favoritação de Produtos por usuario.
 
 ## Para rodar o projeto.
-  Para rodar o projeto é após clonalo será necessario a inclusão da url de conexão do seu cluster do MongoDB Atlas no arquivo ormconfig.json na tag url; 
+  Para rodar o projeto é após clonalo será necessario a inclusão da url de conexão do seu cluster do MongoDB Atlas no arquivo config.ts na tag mongo_url, não esquecer de alterar o username,senha e nome do Database.
 
 ```json
- "url": "mongodb+srv://<@usernameB>:<@password@>@testeproducts.hofnt.mongodb.net/<@@Nome do DB@@>?retryWrites=true&w=majority",
+ "mongo_url": "mongodb+srv://<@usernameB>:<@password@>@testeproducts.hofnt.mongodb.net/<@@Nome do DB@@>?retryWrites=true&w=majority",
  
 ```
 feito isso executar o comando npm install ou yarn na pasta do projeto para que as depedencias sejam baixadas;

@@ -3,6 +3,7 @@ import { verify } from "jsonwebtoken";
 
 interface IPayload {
   sub: string;
+  
 }
 
 export function ensureIsAuthenticated(
@@ -14,7 +15,7 @@ export function ensureIsAuthenticated(
     return res.status(401).end();
   }
   const [, token] = authToken.split(" ");
-
+  
   try {
     const { sub } = verify(token, "4e2927ce2b7b7b4ce1868d13bc514eb5") as IPayload
     req.user_id = sub;

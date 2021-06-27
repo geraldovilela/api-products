@@ -1,8 +1,6 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { getCustomRepository } from "typeorm";
-import { UsersRepositories } from "../repositories/UsersRepository";
-
+import { User } from "../entities/User";
 interface IAuthenticateRequest {
   email: string;
   password: string;
@@ -11,12 +9,10 @@ interface IAuthenticateRequest {
 class AuthenticateUserService {
 
   async execute({ email, password }: IAuthenticateRequest) {
-    const usersRepositories = getCustomRepository(UsersRepositories);
 
-    const user = await usersRepositories.findOne({
-      email
-    })
-
+    const user = await User.findOne({
+      email: email
+    }).select(["password", "user_id"])
     if (!user) {
       throw new Error("Email or Password doesnt match")
     }
@@ -28,13 +24,12 @@ class AuthenticateUserService {
     }
 
     const jwtToken = sign({ email: user.email, role: user.admin }, "4e2927ce2b7b7b4ce1868d13bc514eb5", {
-      subject:`${user.id}`,
+      subject: `${user.user_id}`,
       expiresIn: "4h"
     })
 
     return jwtToken;
   }
-} 
+}
 
 export { AuthenticateUserService };
-         

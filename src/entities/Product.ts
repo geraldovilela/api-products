@@ -1,36 +1,23 @@
-import { Column, CreateDateColumn, Entity, ObjectID, ObjectIdColumn, UpdateDateColumn } from "typeorm";
-import { compileFunction } from "vm";
+import { model } from "mongoose";
+import mongoose from "../database/index";
 
-@Entity()
-class Product {
-  @ObjectIdColumn()
-  id:ObjectID;
+interface IProduct {
+  name: string;
 
-  @Column()
-  name!:string;
+  description: string;
 
-  @Column()
-  description!:string;
+  price: number;
 
-  @Column()
-  price!:number;
-
-  @Column()
-  manufacturer!:string;
-
-  @CreateDateColumn()
-  created_at!:Date;
-
-  @UpdateDateColumn()
-  updated_at!:Date;
-
-  constructor(name: string, description: string, price: number, manufacturer:string) {
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.manufacturer = manufacturer
+  manufacturer: string;
 }
 
-}
+const schema = new mongoose.Schema<IProduct>({
+  name: { type: String, required: true },
+  description: String,
+  price: { type: Number, required: true },
+  manufacturer: { type: String, required: true, lowercase: true },
+})
 
-export {Product};
+const Product = model<IProduct>('Product', schema)
+
+export { Product, IProduct };

@@ -1,4 +1,4 @@
-import { getCustomRepository } from "typeorm";
+/* import { getCustomRepository } from "typeorm";
 import { ProductsRepositorie } from "../repositories/ProductsRepository";
 
 class ListProductService {
@@ -12,4 +12,4 @@ class ListProductService {
 
 }
 
-export { ListProductService };
+export { ListProductService }; */

@@ -1,32 +1,27 @@
-import { getCustomRepository } from "typeorm";
-import { ProductsRepositorie } from "../repositories/ProductsRepository";
+import { Product } from "../entities/Product";
+interface IProductRequest {
+  name: string;
 
-interface IProductRequest{
-  name:string;
+  description: string;
 
-  description:string;
+  price: number;
 
-  price:number;
-
-  manufacturer:string;
+  manufacturer: string;
 
 
 }
 
 class CreateProductService {
 
-  async execute({description, name,price, manufacturer}:IProductRequest) {
-    const productRepository = getCustomRepository(ProductsRepositorie);
-
-    const product = productRepository.create({
+  async execute({ description, name, price, manufacturer }: IProductRequest) {
+    
+    const product = await Product.create({
       name,
       description,
       price,
       manufacturer
     })
-
-    await productRepository.save(product);
-
+        
     return product;
   }
 }

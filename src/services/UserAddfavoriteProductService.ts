@@ -1,4 +1,4 @@
-import { getCustomRepository, getMongoManager, getMongoRepository } from "typeorm";
+/* import { getCustomRepository, getMongoManager, getMongoRepository } from "typeorm";
 import { ProductsRepositorie } from "../repositories/ProductsRepository";
 import { UsersRepositories } from "../repositories/UsersRepository";
 import { FavoriteProductsRepository } from '../repositories/FavoriteProductsRepository'
@@ -41,4 +41,4 @@ class UserAddfavoriteProductService {
   }
 }
 
-export { UserAddfavoriteProductService }
+export { UserAddfavoriteProductService } */

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+/* import { Request, Response } from "express";
 import { UserAddfavoriteProductService } from "../services/UserAddfavoriteProductService";
 
 class UserAddFavoriteProductController {
@@ -14,4 +14,4 @@ class UserAddFavoriteProductController {
   }
 }
 
-export {UserAddFavoriteProductController};
+export {UserAddFavoriteProductController}; */

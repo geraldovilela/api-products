@@ -1,7 +1,5 @@
-/* import { getCustomRepository, getMongoManager, getMongoRepository } from "typeorm";
-import { ProductsRepositorie } from "../repositories/ProductsRepository";
-import { UsersRepositories } from "../repositories/UsersRepository";
-import { FavoriteProductsRepository } from '../repositories/FavoriteProductsRepository'
+import {User} from "../entities/User";
+import {Product} from "../entities/Product";
 
 interface IUserProductRequest {
   user_id: string;
@@ -12,33 +10,18 @@ interface IUserProductRequest {
 class UserAddfavoriteProductService {
 
   async execute({ product_id, user_id }: IUserProductRequest) {
-    const userRepositorie = getCustomRepository(UsersRepositories);
-    const productRepositorie = getCustomRepository(ProductsRepositorie);
-    const favoriteProducts = getCustomRepository(FavoriteProductsRepository);
-    const user = await userRepositorie.findOne(user_id);
-    const product = await productRepositorie.findOne(product_id);
-
+    
+    const user = await User.findOne({user_id:user_id});
+    const product = await Product.findOne({_id:product_id});
+    console.log(product_id, user_id, product)
     if (!product) {
       throw new Error("Invalid product")
     }
-
-    const newFavorite = favoriteProducts.create({
-      userProfile: user,
-      productProfile: product,
-    })
-
-    await favoriteProducts.save(newFavorite);
-
-    const userProducts = await favoriteProducts.find(
-      {
-        where:{
-          user_id:user_id
-        }
-      }
-      )
-
-    return userProducts;
+    
+    user.favorites.push(product._id);
+    await User.updateOne({user_id:user_id}, user)
+    return user;
   }
 }
 
-export { UserAddfavoriteProductService } */
+export { UserAddfavoriteProductService }

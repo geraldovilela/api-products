@@ -1,4 +1,4 @@
-/* import { Request, Response } from "express";
+import { Request, Response } from "express";
 import { ListProductService } from "../services/ListProductsService";
 
 class ListProductController {
@@ -12,4 +12,4 @@ class ListProductController {
   }
 }
 
-export { ListProductController }; */
+export { ListProductController };

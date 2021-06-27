@@ -16,7 +16,7 @@ interface IUser {
 
   avatar?:string;
 
-  favored: IProduct[]
+  favorites: IProduct[]
 }
 
 const schema = new mongoose.Schema<IUser>({
@@ -26,7 +26,7 @@ const schema = new mongoose.Schema<IUser>({
   password:{type: String, required:true, select:false},
   avatar: String,
   admin: {type:Boolean, default:false},
-  favored:[
+  favorites:[
     {
       type:mongoose.Schema.Types.ObjectId,
       ref:"Product"

@@ -1,4 +1,4 @@
-import { getMongoRepository,  } from "typeorm";
+import { getCustomRepository } from "typeorm";
 import { User } from "../entities/User";
 import { UsersRepositories } from "../repositories/UsersRepository"
 
@@ -12,7 +12,7 @@ interface IUserRequest {
 class CreateUserService {
 
   async execute({email, name, admin=false, password}:IUserRequest): Promise<User> {
-    const usersRepository = getMongoRepository(User);
+    const usersRepository = getCustomRepository(UsersRepositories);
 
     if(!email) {
       throw new Error("Email is invalid.")

@@ -23,12 +23,12 @@ class AuthenticateUserService {
       throw new Error("Email or Password doesnt match")
     }
 
-    const jwtToken = sign({ email: user.email, role: user.admin }, "4e2927ce2b7b7b4ce1868d13bc514eb5", {
+    const token = sign({ email: user.email, role: user.admin }, "4e2927ce2b7b7b4ce1868d13bc514eb5", {
       subject: `${user.user_id}`,
       expiresIn: "4h"
     })
-
-    return jwtToken;
+    const userData = await User.findOne({email: email}).populate('favorites')
+    return {user:userData, token};
   }
 }
 
